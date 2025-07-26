@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--xxhdpi * 1.4-->
+    <!--TABLET-->
+    <dimen name="bottom_bar_height">120.4dp</dimen>
+    <dimen name="bottom_bar_height_offline">131.2dp</dimen>
+
+    <dimen name="margin_0">53.2dp</dimen>
+    <dimen name="margin_1">42dp</dimen>
+    <dimen name="margin_2">33.6dp</dimen>
+    <dimen name="margin_3">28dp</dimen>
+    <dimen name="margin_4">22.4dp</dimen>
+    <dimen name="margin_5">16.8dp</dimen>
+    <dimen name="margin_6">11.2dp</dimen>
+    <dimen name="margin_7">8.4dp</dimen>
+    <dimen name="margin_8">5.6dp</dimen>
+    <dimen name="margin_9">2.8dp</dimen>
+
+    <dimen name="image_size_0">84dp</dimen>
+    <dimen name="image_size_1">70dp</dimen>
+    <dimen name="header_icon_size">50.4dp</dimen>
+    <dimen name="image_size_2">56dp</dimen>
+    <dimen name="image_size_3">42dp</dimen>
+    <dimen name="image_size_4">33.6dp</dimen>
+    <dimen name="image_size_5">22.4dp</dimen>
+    <dimen name="image_size_6">19.6dp</dimen>
+
+    <dimen name="button_size_large_4">81.2dp</dimen>
+    <integer name="button_size_large_4_int">81</integer>
+    <integer name="button_size_large_5_int">64</integer>
+    <dimen name="button_size_0">78.4dp</dimen>
+    <dimen name="button_size_2">58.8dp</dimen>
+
+    <dimen name="text_size_0">70sp</dimen>
+    <dimen name="text_size_1">58.8sp</dimen>
+    <dimen name="text_size_2">50.4sp</dimen>
+    <dimen name="text_size_3">42sp</dimen>
+    <dimen name="text_size_4">33.6sp</dimen>
+    <dimen name="text_size_5">25.2sp</dimen>
+    <dimen name="text_size_6">22.4sp</dimen>
+
+
+    <dimen name="side_menu_width">308dp</dimen>
+
+    <dimen name="course_layout_height">64.4dp</dimen>
+
+    <dimen name="send_message_in_dialog_height">140dp</dimen>
+
+    <dimen name="switch_view_height">84dp</dimen>
+
+    <dimen name="text_size_large">260.4sp</dimen>
+
+    <dimen name="tag_large_size">336dp</dimen>
+
+    <dimen name="padding_side_menu">84dp</dimen>
+
+    <integer name="map_zoom_value">820</integer>
+
+    <integer name="marker_size">84</integer>
+
+    <integer name="donut_size">3</integer>
+</resources>

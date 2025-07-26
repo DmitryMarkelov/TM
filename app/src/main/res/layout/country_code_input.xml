@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/country_code_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/input_height"
+        app:ccp_autoDetectCountry="true"
+        app:ccp_countryAutoDetectionPref="NETWORK_LOCALE_SIM"
+        app:ccp_showNameCode="false"
+        app:ccp_showPhoneCode="true"
+        app:ccp_hintExampleNumber="true"
+        app:ccp_showArrow="true"
+        app:ccp_contentColor="@color/white"
+        android:background="@drawable/gray_fill_button_background"
+        android:layout_marginRight="5dp"/>
+    <EditText
+        android:id="@+id/country_code_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/input_height"
+        android:contentDescription="Enter phone number"
+        android:layout_weight="7"/>
+</LinearLayout>

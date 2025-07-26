@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:paddingBottom="@dimen/margin_3"
+    android:paddingLeft="@dimen/margin_3"
+    android:paddingRight="@dimen/margin_3"
+    android:paddingTop="@dimen/margin_3">
+
+    <View
+        android:id="@+id/top_margin"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/report_icon"
+        android:layout_width="@dimen/header_icon_size"
+        android:layout_height="@dimen/header_icon_size"
+        android:src="@drawable/ic_issue"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/report_tv"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/report_tv"
+        app:layout_constraintTop_toTopOf="@id/report_tv" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/report_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_2"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:text="@string/report_issue"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_0"
+        app:layout_constraintBottom_toTopOf="@id/cart_related_issue_tv"
+        app:layout_constraintLeft_toRightOf="@id/report_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_margin"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/cart_related_issue_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_6"
+        android:layout_marginLeft="@dimen/margin_1"
+        android:text="@string/cart_related_issue"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_3"
+        app:layout_constraintBottom_toTopOf="@id/course_damaged_tv"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/cart_related_issue_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/report_tv" />
+
+    <CheckBox
+        android:id="@+id/cart_related_issue_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_1"
+        android:backgroundTint="@color/white"
+        android:buttonTint="@color/white"
+        android:checked="false"
+        app:layout_constraintBottom_toBottomOf="@id/cart_related_issue_tv"
+        app:layout_constraintLeft_toRightOf="@id/cart_related_issue_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cart_related_issue_tv" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/course_damaged_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_6"
+        android:layout_marginLeft="@dimen/margin_1"
+        android:text="@string/course_damaged"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_3"
+        app:layout_constraintBottom_toTopOf="@id/lost_item_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/cart_related_issue_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/cart_related_issue_tv" />
+
+    <CheckBox
+        android:id="@+id/course_damaged_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_1"
+        android:backgroundTint="@color/white"
+        android:buttonTint="@color/white"
+        android:checked="false"
+        app:layout_constraintBottom_toBottomOf="@id/course_damaged_tv"
+        app:layout_constraintLeft_toRightOf="@id/course_damaged_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/course_damaged_tv" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/lost_item_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_6"
+        android:layout_marginLeft="@dimen/margin_1"
+        android:text="@string/lost_item"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_3"
+        app:layout_constraintBottom_toTopOf="@id/other_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/course_damaged_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/course_damaged_tv" />
+
+    <CheckBox
+        android:id="@+id/lost_item_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_1"
+        android:backgroundTint="@color/white"
+        android:buttonTint="@color/white"
+        android:checked="false"
+        app:layout_constraintBottom_toBottomOf="@id/lost_item_tv"
+        app:layout_constraintLeft_toRightOf="@id/lost_item_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/lost_item_tv" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/other_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_1"
+        android:text="@string/other"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_3"
+        app:layout_constraintBottom_toTopOf="@id/submit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/lost_item_checkbox"
+        app:layout_constraintTop_toBottomOf="@id/lost_item_tv" />
+
+    <CheckBox
+        android:id="@+id/other_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_1"
+        android:backgroundTint="@color/white"
+        android:buttonTint="@color/white"
+        android:checked="false"
+        app:layout_constraintBottom_toBottomOf="@id/other_tv"
+        app:layout_constraintLeft_toRightOf="@id/other_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/other_tv" />
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/submit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_6"
+        app:buttonText="@string/submit"
+        app:layout_constraintBottom_toTopOf="@id/cancel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:buttonColor="@color/white"
+        app:buttonText="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

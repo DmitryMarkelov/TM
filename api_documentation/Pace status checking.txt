@@ -1,0 +1,8 @@
+PACE STATUS
+The following rules can be applied in this order in order to confirm the device's status
+
+if "pace" > 0 - Bottom bar is green and text is "On Pace"
+if "pace" < 0 [AND "heldup" = false AND "holdingup" = false] - Bottom bar is red and text is "Slow" ([]Not necessary if appying rules in order)
+if "pace" < 0 AND "heldup" = true - Bottom bar is orange and text is "Delayed"
+if "pace" < 0 AND "holdingup" = true - Bottom bar is magenta and text is "Delayer"
+

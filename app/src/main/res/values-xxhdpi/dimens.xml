@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--DEFAULT BY XIAOMI MI6-->
+    <dimen name="bottom_bar_height">86dp</dimen>
+    <dimen name="bottom_bar_height_offline">106dp</dimen>
+
+    <dimen name="margin_0">38dp</dimen>
+    <dimen name="margin_1">30dp</dimen>
+    <dimen name="margin_2">24dp</dimen>
+    <dimen name="margin_3">20dp</dimen>
+    <dimen name="margin_4">16dp</dimen>
+    <dimen name="margin_5">12dp</dimen>
+    <dimen name="margin_6">8dp</dimen>
+    <dimen name="margin_7">6dp</dimen>
+    <dimen name="margin_8">4dp</dimen>
+    <dimen name="margin_9">2dp</dimen>
+
+    <dimen name="image_size_0">60dp</dimen>
+    <dimen name="image_size_1">50dp</dimen>
+    <dimen name="header_icon_size">36dp</dimen>
+    <dimen name="image_size_2">40dp</dimen>
+    <dimen name="image_size_3">30dp</dimen>
+    <dimen name="image_size_4">24dp</dimen>
+    <dimen name="image_size_5">16dp</dimen>
+    <dimen name="image_size_6">14dp</dimen>
+
+    <dimen name="button_size_large_4">58dp</dimen>
+    <integer name="button_size_large_4_int">58</integer>
+    <integer name="button_size_large_5_int">46</integer>
+    <dimen name="button_size_0">56dp</dimen>
+    <dimen name="button_size_2">42dp</dimen>
+
+    <dimen name="text_size_0">50sp</dimen>
+    <dimen name="text_size_1">42sp</dimen>
+    <dimen name="text_size_2">36sp</dimen>
+    <dimen name="text_size_3">30sp</dimen>
+    <dimen name="text_size_4">24sp</dimen>
+    <dimen name="text_size_5">18sp</dimen>
+    <dimen name="text_size_6">16sp</dimen>
+
+
+    <dimen name="side_menu_width">220dp</dimen>
+
+    <dimen name="course_layout_height">46dp</dimen>
+
+    <dimen name="send_message_in_dialog_height">100dp</dimen>
+
+    <dimen name="switch_view_height">60dp</dimen>
+
+    <dimen name="text_size_large">186sp</dimen>
+
+    <dimen name="tag_large_size">240dp</dimen>
+
+    <dimen name="padding_side_menu">60dp</dimen>
+
+    <integer name="map_zoom_value">370</integer>
+
+    <integer name="marker_size">56</integer>
+
+    <integer name="donut_size">3</integer>
+</resources>

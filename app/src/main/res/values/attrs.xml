@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SideMenuItem">
+        <attr name="sideMenuIcon" format="reference" />
+        <attr name="sideMenuText" format="string" />
+        <attr name="sideMenuLight" format="boolean" />
+        <attr name="sideMenuTopDivider" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TMTextView">
+        <attr name="fontFam" format="enum">
+            <enum name="regular_gothic_regular" value="1" />
+            <enum name="osp_din" value="0" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TMCheckBox">
+        <attr name="fontFami" format="enum">
+            <enum name="regular_gothic_regular" value="1" />
+            <enum name="osp_din" value="0" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TMButton">
+        <attr name="buttonIcon" format="reference" />
+        <attr name="buttonText" format="string" />
+        <attr name="buttonColor" format="reference" />
+        <attr name="buttonTextSize" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="large" value="1" />
+        </attr>
+
+        <attr name="TMButtonSize" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="small" value="1" />
+        </attr>
+        <attr name="buttonBackgroundDrawable" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RateRoundView">
+        <attr name="RateRoundView_stars" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="GolfSwitchView">
+        <attr name="golfSwitch1Icon" format="reference" />
+        <attr name="golfSwitch2Icon" format="reference" />
+        <attr name="golfSwitch3Icon" format="reference" />
+
+        <attr name="golfSwitch1Text" format="string" />
+        <attr name="golfSwitch2Text" format="string" />
+        <attr name="golfSwitch3Text" format="string" />
+
+        <attr name="golfSwitchVars" format="integer"></attr>
+    </declare-styleable>
+    <declare-styleable name="LoopingViewPagerCustom">
+        <attr name="isInfinite" format="boolean" />
+        <attr name="autoScroll" format="boolean" />
+        <attr name="wrap_content" format="boolean" />
+        <attr name="scrollInterval" format="integer" />
+        <attr name="viewpagerAspectRatio" format="float" />
+        <attr name="itemAspectRatio" format="float" />
+    </declare-styleable>
+</resources>

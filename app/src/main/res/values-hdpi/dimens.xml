@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--XXHDPI * 0.8-->
+    <dimen name="bottom_bar_height">68.8dp</dimen>
+    <dimen name="bottom_bar_height_offline">86</dimen>
+
+    <dimen name="margin_0">30.4dp</dimen>
+    <dimen name="margin_1">24dp</dimen>
+    <dimen name="margin_2">19.2dp</dimen>
+    <dimen name="margin_3">16dp</dimen>
+    <dimen name="margin_4">12.8dp</dimen>
+    <dimen name="margin_5">9.6dp</dimen>
+    <dimen name="margin_6">6.4dp</dimen>
+    <dimen name="margin_7">4.8dp</dimen>
+    <dimen name="margin_8">3.2dp</dimen>
+    <dimen name="margin_9">1.6dp</dimen>
+
+    <dimen name="image_size_0">48dp</dimen>
+    <dimen name="image_size_1">40dp</dimen>
+    <dimen name="header_icon_size">28.8dp</dimen>
+    <dimen name="image_size_2">32dp</dimen>
+    <dimen name="image_size_3">24dp</dimen>
+    <dimen name="image_size_4">19.2dp</dimen>
+    <dimen name="image_size_5">12.8dp</dimen>
+    <dimen name="image_size_6">11.2dp</dimen>
+
+    <dimen name="button_size_large_4">46.4dp</dimen>
+    <integer name="button_size_large_4_int">46</integer>
+    <integer name="button_size_large_5_int">37</integer>
+    <dimen name="button_size_0">44.8dp</dimen>
+    <dimen name="button_size_2">33.6dp</dimen>
+
+    <dimen name="text_size_0">40sp</dimen>
+    <dimen name="text_size_1">33.6sp</dimen>
+    <dimen name="text_size_2">28.8sp</dimen>
+    <dimen name="text_size_3">24sp</dimen>
+    <dimen name="text_size_4">19.2sp</dimen>
+    <dimen name="text_size_5">14.4sp</dimen>
+    <dimen name="text_size_6">12.8sp</dimen>
+
+
+    <dimen name="side_menu_width">176dp</dimen>
+
+    <dimen name="course_layout_height">36.8dp</dimen>
+
+    <dimen name="send_message_in_dialog_height">80dp</dimen>
+
+    <dimen name="switch_view_height">48dp</dimen>
+
+    <dimen name="text_size_large">148.8sp</dimen>
+
+    <dimen name="tag_large_size">192dp</dimen>
+
+    <dimen name="padding_side_menu">48dp</dimen>
+
+    <integer name="map_zoom_value">288</integer>
+
+    <integer name="marker_size">52</integer>
+
+    <integer name="donut_size">4</integer>
+</resources>

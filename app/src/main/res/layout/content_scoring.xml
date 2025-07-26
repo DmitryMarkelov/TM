@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_lighter"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <TextView
+        android:id="@+id/tvPlayer1"
+        android:text="Chris Rows"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:background="@drawable/score_player_back_shape"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAlert" />
+
+    <TextView
+        android:id="@+id/tvPlayer2"
+        android:text="Sean de Lange"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:background="@drawable/score_player_back_shape"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayer1" />
+
+    <TextView
+        android:id="@+id/tvPlayer3"
+        android:text="Roy McLee"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:background="@drawable/score_player_back_shape"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayer2" />
+
+    <TextView
+        android:id="@+id/tvPlayer4"
+        android:text="Frank Granger"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:background="@drawable/score_player_back_shape"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayer3" />
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/btnPlayer1"
+        android:layout_width="@dimen/button_size_2"
+        android:layout_height="@dimen/button_size_2"
+        android:layout_marginEnd="8dp"
+        android:tag="0"
+        app:TMButtonSize="small"
+        app:buttonColor="@color/white"
+        app:buttonText="4"
+        app:buttonTextSize="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPlayer1"
+        app:layout_constraintEnd_toEndOf="@+id/tvPlayer1"
+        app:layout_constraintTop_toTopOf="@+id/tvPlayer1">
+
+    </com.tagmarshal.golf.view.TMButton>
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/btnPlayer2"
+        android:layout_width="@dimen/button_size_2"
+        android:layout_height="@dimen/button_size_2"
+        android:layout_marginEnd="8dp"
+        android:tag="1"
+        app:TMButtonSize="small"
+        app:buttonColor="@color/white"
+        app:buttonText="5"
+        app:buttonTextSize="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPlayer2"
+        app:layout_constraintEnd_toEndOf="@+id/tvPlayer1"
+        app:layout_constraintTop_toTopOf="@+id/tvPlayer2" />
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/btnPlayer3"
+        android:layout_width="@dimen/button_size_2"
+        android:layout_height="@dimen/button_size_2"
+        android:layout_marginEnd="8dp"
+        android:tag="2"
+        app:TMButtonSize="small"
+        app:buttonColor="@color/white"
+        app:buttonText="6"
+        app:buttonTextSize="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPlayer3"
+        app:layout_constraintEnd_toEndOf="@+id/tvPlayer1"
+        app:layout_constraintTop_toTopOf="@+id/tvPlayer3" />
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/btnPlayer4"
+        android:layout_width="@dimen/button_size_2"
+        android:layout_height="@dimen/button_size_2"
+        android:layout_marginEnd="8dp"
+        android:tag="3"
+        app:TMButtonSize="small"
+        app:buttonColor="@color/white"
+        app:buttonText="4"
+        app:buttonTextSize="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPlayer4"
+        app:layout_constraintEnd_toEndOf="@+id/tvPlayer1"
+        app:layout_constraintTop_toTopOf="@+id/tvPlayer4">
+
+    </com.tagmarshal.golf.view.TMButton>
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/backToMap"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
+        app:buttonColor="@color/white"
+        app:buttonIcon="@drawable/ic_golf_hole"
+        app:buttonText="@string/back_to_map"
+        app:buttonTextSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnCompleteScore"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/btnCompleteScore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="4dp"
+        app:buttonColor="@color/green"
+        app:buttonText="@string/complete_score"
+        app:buttonTextSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/backToMap" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/redLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/score_player_back_shape"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        android:layout_marginStart="12dp"
+        android:paddingTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btnUndo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="16dp"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/red"
+            app:buttonText="UNDO CHANGES"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnSave"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </com.tagmarshal.golf.view.TMButton>
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="16dp"
+            app:TMButtonSize="small"
+            app:buttonText="SAVE SCORES"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnUndo" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btnClear"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:layout_marginBottom="16dp"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="CLEAR"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toTopOf="@+id/btnUndo"
+            app:layout_constraintEnd_toStartOf="@+id/btn0"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/btnUndo" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btn0"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:tag="0"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="0"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/btnClear"
+            app:layout_constraintEnd_toStartOf="@+id/btnNoScore"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnClear" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btnNoScore"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/orange"
+            app:buttonText="NO SCORE"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/btn0"
+            app:layout_constraintEnd_toEndOf="@+id/btnSave"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn0" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btn7"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:layout_marginBottom="8dp"
+            android:tag="7"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="7"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toTopOf="@+id/btnClear"
+            app:layout_constraintEnd_toStartOf="@+id/btn8"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/btnClear" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btn8"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:tag="8"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="8"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/btn7"
+            app:layout_constraintEnd_toStartOf="@+id/btn9"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn7" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btn9"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:tag="9"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="9"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/btn8"
+            app:layout_constraintEnd_toEndOf="@+id/btnNoScore"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn8" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btn4"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:layout_marginBottom="8dp"
+            android:tag="4"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="4"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toTopOf="@+id/btn7"
+            app:layout_constraintEnd_toStartOf="@+id/btn5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/btn7" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btn5"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:tag="5"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="5"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/btn4"
+            app:layout_constraintEnd_toStartOf="@+id/btn6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn4" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btn6"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:tag="6"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="6"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/btn5"
+            app:layout_constraintEnd_toEndOf="@+id/btn9"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn5" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btn1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:layout_marginBottom="8dp"
+            android:tag="1"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="1"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toTopOf="@+id/btn4"
+            app:layout_constraintEnd_toStartOf="@+id/btn2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/btn4" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btn3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:tag="3"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="3"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/btn2"
+            app:layout_constraintEnd_toEndOf="@+id/btn6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn2" />
+
+        <com.tagmarshal.golf.view.TMButton
+            android:id="@+id/btn2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_size_2"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:tag="2"
+            app:TMButtonSize="small"
+            app:buttonColor="@color/white"
+            app:buttonText="2"
+            app:buttonTextSize="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/btn1"
+            app:layout_constraintEnd_toStartOf="@+id/btn3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvAlert"
+        android:text="@string/all_scores_saved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rectangle_shape_button"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textColor="@color/white"
+        android:paddingBottom="4dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivSignal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAlert"
+        app:layout_constraintEnd_toStartOf="@+id/tvAlert"
+        app:layout_constraintTop_toTopOf="@+id/tvAlert"
+        app:srcCompat="@drawable/ic_baseline_signal_wifi_4_bar_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

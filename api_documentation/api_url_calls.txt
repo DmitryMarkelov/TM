@@ -1,0 +1,582 @@
+Here is a list of all the URL API calls:
+
+Initial information - Will present a full list of courses 
+At this stage there are only 2 servers in the database.
+URL call: https://central.tagmarshal.com/app/getcourses/lat/lat-coord/lon/lon-coord/
+eg. https://central.tagmarshal.com/app/getcourses/lat/-34.0716597/lon/18.4185507/
+
+The data will be presented in a basic JSON array with closes first - Will be presented in ["Name", "Server URL"] format.
+
+Once the server is selected, this URL will be where GPS locations are sent and further API calls will be made.
+
+
+Course overlays:
+https://+url+/img/coursebg.png
+https://+url+/img/flags.png
+Course Logo:
+https://+url+/img/courselogo.jpg
+
+
+Course configuration:
+https://+url+/app/courseconfig/
+- This will pass relevant variables 
+- Bounds are defined in the JSON with the following eg.:
+    "NELAT": "-34.06092770668691"
+    "NELON": "18.433328176504574"
+    "SWLAT": "-34.07517877441312"
+    "SWLON": "18.420019055372677"
+
+Hole information:
+https://+url+/app/getholeinfo/+holenumber+/
+
+This will return basic information about the hole.
+eg.:
+
+https://appdev.tagmarshal.com/app/getholeinfo/1/
+[
+  {
+    "hole": 1,
+    "goal_time": 900,
+    "stroke": 17,
+    "par": "4",
+    "startpoint": [
+      -34.068989,
+      18.427931
+    ],
+    "endpoint": [
+      -34.072141,
+      18.428641
+    ],
+    "centerpoint": [
+      -34.07202,
+      18.428744
+    ]
+  }
+]
+
+https://+url+/app/getallholeinfo/
+Gets all information for all the holes on the course.
+eg: https://appdev.tagmarshal.com/app/getallholeinfo/
+Returns all hole information for the course.
+
+
+
+https://+url+/app/getteetimes/+IMEI+/
+Currently returns demo data. Will return an array of possible tee times, or 1 tee time if the device is allocated.
+Returns:
+[
+  {
+    "hole": "1",
+    "player1": "Player 1",
+    "player2": "Player 2",
+    "player3": "Player 3",
+    "player4": "Player 4",
+    "teetime": "10:15",
+    "id": "5bc6fb422266bb70b194783f"	
+  },
+  {
+    "hole": "1",
+    "player1": "Player 1",
+    "player2": "Player 2",
+    "player3": "Player 3",
+    "player4": "Player 4",
+    "teetime": "10:45",
+    "id": "5bc6e8802266bb70b194783e"
+  }
+]
+
+In-round information:
+https://+url+/app/getdeviceinfo/+IMEI+/
+Currently returns demo data. Will return actual data when actual data is available. More data may be added to the string but for now there are the following fields:
+"in_round" - If true, there will be further data. If false, there will be no further data.
+"currenthole" - will be the hole that the round is currently on.
+"playtime" - amount of time played 
+"pace" is in seconds and should be converted to minutes for the app - if negative then the the round is slow and data shoudl be red. 
+"heldup" - If this is true then the icon should be orange.
+"holdingup" - If this is true then the icon should be magenta.
+
+Example data: 
+[
+  {
+    "in_round": true,
+    "currenthole": "2",
+    "start_time": "10:29",
+    "goaltime": "04:35",
+    "playtime": 5214,
+    "pace": -1487,
+    "heldup": false,
+    "holdingup": false
+  }
+]
+
+Potential data:
+[
+  {
+    "in_round": false
+  }
+]
+
+At Halfway Data:
+[
+  {
+    "in_round": false,
+    "closed": true,
+    "halfway": true, //This indicates that the tag is at halfway
+    "start_time": "10:29",
+    "goaltime": "04:35",
+    "playtime": 5214,
+    "pace": -1487,
+    "heldup": false,
+    "holdingup": false
+  }
+]
+
+Round closed data:
+[
+  {
+    "in_round": false,
+    "closed": true,
+    "halfway": false,
+    "start_time": "10:29",
+    "goaltime": "04:35",
+    "playtime": 5214,
+    "pace": -1487,
+    "heldup": false,
+    "holdingup": false
+  }
+]
+
+Alerts:
+https://+url+/app/getalerts/+IMEI+/
+Currently returns demo data. Will return actual data when actual data is available. More data may be added to the string but for now there are the following fields:
+"id": The ID of the alert - This will be required in order to acknowledge the alert.
+"type": The alert type - This will be dynamic. For now types are "Test", "Weather", "Geofence"
+"message": The alert message
+"time": Time in UTC
+Example data: 
+[
+  {
+    "id": "5bb200865285d70779dbf5d2",
+    "type": "Test",
+    "message": "Test alert message",
+    "time": "2018-10-01T11:13:11.299Z"
+  },
+  {
+    "id": "5bb204445285d73e7cdbf5d2",
+    "type": "Weather",
+    "message": "Weather warning. Please proceed back to the clubhouse",
+    "time": "2018-10-01T11:25:16.299Z"
+  }
+]
+
+https://+url+/app/acknowledgealerts/+IMEI+/id/+alertID+/
+Expected response:
+[
+  "OK"
+]
+
+Any other response will be an error message
+
+Hole Distances:
+https://+url+/app/getholedistance/+holenumber+/
+Returns distances in meters rounded to nearers meter from tee to center and back of green.
+Eg:
+https://appdev.tagmarshal.com/app/getholedistance/3/
+Returns:
+[
+  {
+    "back": 361,
+    "center": 344,
+    "front": 326
+  }
+]
+
+
+Get distance from point to various locations
+https://+url+/app/getholedistancefrompoint/hole/+holenumber+/lat/+lat+/lon/+lon+/
+Returns distances in meters rounded to nearest meter from the point to front, center, and back of green and the tee.
+Eg:
+https://appdev.tagmarshal.com/app/getholedistancefrompoint/hole/1/lat/-34.072381/lon/18.428261/
+Returns:
+[
+  {
+    "back": 44,
+    "center": 60,
+    "front": 73,
+    "tee": 378
+  }
+]
+
+Get distance from current location to various locations (for range finding from current location)
+https://+url+/app/getholedistancelocationtopoint/hole/+hole+/lat/+lat+/lon/+lon+/pointlat/+currentlat+/pointlon/+currentlon+/
+Eg:
+https://appdev.tagmarshal.com/app/getholedistancelocationtopoint/hole/1/lat/-34.072381/lon/18.428269/pointlat/-34.0724/pointlon/18.428291/
+Returns:
+[
+  {
+    "back": 43,
+    "center": 59,
+    "front": 72,
+    "mylocation": 3
+  }
+]
+
+
+Check device registration:
+https://+url+/app/registerdevice/+IMEI+/type/+type+/
+Returns the 'tag' number in JSON format or error if device is not registered on the server.
+type can be either 'cart' or 'normal'
+
+Eg: https://appdev.tagmarshal.com/app/registerdevice/864963045193947/type/cart/
+Returns:
+[
+  {
+    "tag": "6"
+  }
+]
+
+Error Example:
+[
+  {
+    "Error": "This device is not registered. Please contact Tagmarshal to register this device on the network."
+  }
+]
+
+
+Send messages:
+https://+url+/app/sendmessage/device/+IMEI+/priority/+priority+/message/+message text+/
+"priority" can be:
+low
+medium
+high
+Emergency message: 
+should be sent with priority of "high",
+Can have the text: "Emergency request for "+emergency type from checkbox
+
+Course administrators control how they would like to receive the various alerts (E-mail, call, text, etc) - This is why the priority is important.
+
+"message text" can be: Any text that needs to be sent to the course administrators.
+
+Possible responses: "OK" or "Error"
+
+Eg URL call:
+http://appdev.tagmarshal.com/app/sendmessage/device/864890031335283/priority/medium/message/This%20is%20a%20test%20message
+Returns:
+OK
+
+
+
+Confirm Tee Time:
+https://+url+/app/confirmteetime/tag/+tag+/teetimeid/+teetime_id+/
+"tag" is the tag number as per device registration
+"teetime_id" is the "id" field passed by the getteetimes API call
+Possible responses: 
+"OK" or "Error"
+eg URL Call:
+https://appdev.tagmarshal.com/app/confirmteetime/tag/7/teetimeid/5bc6e8802266bb70b194783e/
+Returns:
+OK
+
+
+Unconfirm Tee Time (On "Change Group" in admin area):
+https://+url+/app/unconfirmteetime/tag/+tag+/teetimeid/+teetime_id+/
+"tag" is the tag number as per device registration
+"teetime_id" is the "id" field passed by the getteetimes API call
+Possible responses: "OK" or "Error"
+eg URL Call:
+https://appdev.tagmarshal.com/app/unconfirmteetime/tag/7/teetimeid/5bc6e8802266bb70b194783e/
+Returns:
+OK
+
+
+Authenticate User
+https://+url+/app/authenticate/username/+username+/password/+password+/
+
+Will return an object either "authenticated" or "denied".
+All username "test" calls will authenticate successfully with any password for testing purposes.
+Any other username/password combos will fail for testing purposes.
+
+Eg:
+https://appdev.tagmarshal.com/app/authenticate/username/test/password/password/
+Returns:
+[
+  "authenticated"
+]
+
+
+
+Get Course Contact Information:
+https://+url+/app/getcontactinfo/
+
+Will return an object with contact info. This may include more information than just the phone number, but for now the phone number will be returned.
+
+Eg:
+https://appdev.tagmarshal.com/app/getcontactinfo/
+Returns:
+[
+  {
+    "phone": "021 701 5444"	
+  }
+]
+
+
+
+Close Round (In Admin area)
+https://+url+/app/closeround/+imei+/
+Will return an object with a response.
+
+Potential resposes:
+[
+  "OK"
+]
+
+OR
+
+[
+  {
+    "error": "Error Message from server"
+  }
+]
+
+Eg URL: 
+https://appdev.tagmarshal.com/app/closeround/864890031335283/
+Returns: 
+[
+  {
+    "error": "no open round"
+  }
+]
+
+
+
+Insert Round Rating
+https://+URL+/insertrating/device/+device_id+/position/(halfway or full)/rating/+star_rating+/comment/+comment+/
+Will return a response 'OK' or {'error': 'An error has occurred'}
+
+Get all zones
+https://+URL+/getzones/
+Returns an object with all zones
+
+Get Geofences
+https://+URL+/getgeofences/
+Returns an object with active geofences
+
+Call Drinks cart:
+https://+URL+/app/calldrinks/+device_id+/
+Returns:
+"OK"
+or error object
+eg: 
+[
+  {
+    "error": "error message"
+  }
+]
+
+
+Send Bad Round:
+https://+URL+/app/sendbadround/+device_id+/
+Returns:
+"OK"
+or error object
+eg: 
+[
+  {
+    "error": "error message"
+  }
+]
+
+Send Cached fixes:
+https://+URL+/app/insertfixes/device/+device_id+/
+Body: 
+fixes = [
+	{
+		"accuracy": "1.3",
+		"lat": "-34.09081",
+		"lon": "18.460995",
+		"battery": "55",
+		"timestamp": "2018-01-24T06:09:42Z"
+	},
+	{
+		"accuracy": "4.3",
+		"lat": "-34.09081",
+		"lon": "18.460995",
+		"battery": "53",
+		"timestamp": "2018-01-24T06:10:42Z"
+	}
+]
+---
+Returns:
+"OK"
+or error object
+eg: 
+[
+  {
+    "error": "error message"
+  }
+]
+
+
+
+Send Logs:
+https://central.tagmarshal.com/app/uploadlogs/
+Body: 
+{
+  "date": "2018-01-24T06:09:42Z",
+  "course_name": "Cape Town",
+  "course_url": "appdev.tagmarsgal.com",
+  "device_id": "352264100043864",
+  "logs": [
+    "fix-sent:2018-01-24T06:09:42Z:55:true:false:-34.060668906484,18.412337367532,6.9",
+    ""
+  ]
+}
+---
+Returns:
+"OK"
+or error object
+eg: 
+[
+  {
+    "error": "error message"
+  }
+]
+
+Get Device Logs:
+https://central.tagmarshal.com/app/getdevicelogs/+imei+/
+---
+Returns:
+[
+  {
+    "device_id": "352264100043864",
+    "course_name": "Cape Town",
+    "course_url": "appdev.tagmarsgal.com",
+    "logs": [
+      "fix-sent:2018-01-24T06:09:42Z:55:true:false:-34.060668906484,18.412337367532,6.9",
+      ""
+    ],
+    "date": "2018-01-24T06:09:42.000Z"
+  },
+  ...
+]
+
+Update device firebase token
+https://+url+/app/updatetoken/imei/+imei+/token/+token+/
+Success Response:
+OK
+Error Response:
+{"error": "An error occurred updating the device token."}
+
+Update device firebase token
+https://+url+/app/getfood/
+Success Response:
+{
+  "food": [
+    {
+      "_id": "5cada9015285d7756b56500e",
+      "active": true,
+      "additions": [
+        {
+          "name": "Chips (R5.00)",
+          "price": 5
+        },
+        {
+          "name": "Salad (R7.50)",
+          "price": 7.5
+        }
+      ],
+      "category": "Hot Food",
+      "name": "T-Bone 500g",
+      "options": [
+        "Rare",
+        "Medium-Rare",
+        "Medium",
+        "Medium-Well",
+        "Burnt to a crisp"
+      ],
+      "price": 100,
+      "type": "food"
+    },
+    ...
+  ],
+  "beverage": [
+    {
+      "_id": "5ca71a8c0daf4bdaf9279289",
+      "type": "beverage",
+      "active": true,
+      "name": "Bernardus water plat 0,5L",
+      "price": 2.25
+    },
+    ...
+  ]
+}
+Error Response:
+{"error": "An error occurred updating the device token."}
+
+Get Points of Interest:
+https://+url+/app/pointsofinterest/
+---
+Returns:
+[
+  {
+    "_id": "5cadd5c55285d7756c56500e",
+    "coordinates": [
+      -34.064982,
+      18.42885
+    ],
+    "name": "TOILET",
+    "icon": "http://central.tagmarshal.com/assets/app-icons/toilet.svg"
+  },
+  ...
+]
+
+---
+https://+url+/app/getadvertisements/imei/+IMEI+/
+Images dir: https://+url+/advertisements/uploads/
+Returns:
+[
+  {
+    "_id": "5ccaaeb25285d7c50ad015b3",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        ...
+      ]
+    },
+    "properties": {
+      "is_active": true,
+      "device_type": "both",
+      "color": "#1f00ff",
+      "title": "Order Food",
+      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "define_day_time": true,
+      "play_days": [
+        "Mon",
+        "Tue",
+        "Wed"
+      ],
+      "start_time": "10:29",
+      "end_time": "15:29"
+    }
+  },
+  {
+    "_id": "5ccaca855285d77d13d015b3",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        ...
+      ]
+    },
+    "properties": {
+      "is_active": true,
+      "device_type": "both",
+      "color": "#1f00ff",
+      "image": {
+        "5i": "test-5i.jpg",
+        "7i": "test-7i.jpg",
+        "10i": "test-10i.jpg"
+      }
+    }
+  }
+]
+

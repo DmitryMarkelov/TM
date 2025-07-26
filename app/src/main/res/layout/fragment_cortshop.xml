@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/top_margin"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/green"
+        android:padding="10dp">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_5"
+            android:textStyle="bold"
+            android:text="Menu"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/barlow_condensed_regular"
+            />
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/shop_tabs"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabTextColor="@color/white"
+        android:background="@color/black"
+        app:tabIndicator="@null"
+        android:layout_below="@id/top_margin"
+        app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/menu_recyclerview"
+        android:layout_below="@id/shop_tabs"
+        android:paddingBottom="60dp"
+        />
+<Button
+    android:id="@+id/viewOrderButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/green_fill_button_background"
+    android:textColor="@color/white"
+    android:layout_alignParentBottom="true"
+    android:layout_margin="10dp"
+    android:visibility="gone"
+    android:text="@string/view_order"/>
+</RelativeLayout>

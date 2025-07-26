@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <View
+        android:id="@+id/top_margin"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <WebView
+        android:id="@+id/webview_webview"
+        android:layout_width="match_parent"
+        android:layout_marginTop="78dp"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_person"
+        android:tint="@color/white"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appbar" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:background="@color/white"
+            android:src="@drawable/appbar_header"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_three_lines"
+            android:tint="#fff"
+            android:paddingBottom="@dimen/margin_5"
+            android:paddingStart="@dimen/margin_4"
+            android:paddingEnd="@dimen/margin_4"
+            android:paddingTop="@dimen/margin_5"
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            app:layout_constraintRight_toRightOf="@id/appbar"
+            app:layout_constraintTop_toTopOf="@id/title" />
+
+        <View
+            android:id="@+id/top"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintLeft_toLeftOf="@id/back"
+            app:layout_constraintRight_toRightOf="@id/back"
+            app:layout_constraintTop_toTopOf="@id/back" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/image_size_4"
+            android:layout_height="@dimen/image_size_4"
+            android:layout_marginRight="@dimen/margin_7"
+            android:layout_marginTop="@dimen/margin_5"
+            app:layout_constraintBottom_toBottomOf="@id/top"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="@id/top"
+            app:layout_constraintRight_toLeftOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/top" />
+
+        <View
+            android:id="@+id/left_place"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/back"
+            app:layout_constraintLeft_toLeftOf="@id/back"
+            app:layout_constraintTop_toTopOf="@id/back"
+            app:layout_constraintWidth_percent="0.035" />
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:text="Live Leaderboard"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_5"
+            app:layout_constraintBottom_toBottomOf="@id/top"
+            app:layout_constraintLeft_toRightOf="@id/logo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/top"
+            app:textAllCaps="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/webview_backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
+        app:buttonColor="@color/gray"
+        app:buttonIcon="@drawable/ic_golf_hole"
+        app:buttonText="@string/back_to_map"
+        app:buttonTextSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

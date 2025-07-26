@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:paddingBottom="@dimen/margin_3"
+    android:paddingLeft="@dimen/margin_3"
+    android:paddingRight="@dimen/margin_3">
+
+    <View
+        android:id="@+id/top_margin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/admin_icon"
+        android:layout_width="@dimen/header_icon_size"
+        android:layout_height="@dimen/header_icon_size"
+        android:layout_marginBottom="@dimen/margin_2"
+        android:layout_marginRight="@dimen/margin_6"
+        android:layout_marginTop="@dimen/margin_4"
+        android:src="@drawable/ic_settings"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/admin_tv"
+        app:layout_constraintTop_toBottomOf="@id/top_margin" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/admin_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/admin"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_0"
+        app:layout_constraintBottom_toBottomOf="@id/admin_icon"
+        app:layout_constraintLeft_toRightOf="@id/admin_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/admin_icon" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/margin_2"
+        android:layout_marginTop="@dimen/margin_2"
+        app:layout_constraintBottom_toTopOf="@id/btn_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/admin_icon">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/first_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_divider"
+                app:layout_constraintTop_toBottomOf="@id/admin_icon" />
+
+            <com.tagmarshal.golf.view.SideMenuItem
+                android:id="@+id/item_change_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_9"
+                app:layout_constraintTop_toBottomOf="@id/first_divider"
+                app:sideMenuIcon="@drawable/ic_golf_hole"
+                app:sideMenuTopDivider="false"
+                app:sideMenuLight="true"
+                app:sideMenuText="@string/change_course" />
+
+            <View
+                android:id="@+id/second_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_9"
+                android:background="@color/gray_divider"
+                app:layout_constraintTop_toBottomOf="@id/item_change_course" />
+
+            <com.tagmarshal.golf.view.SideMenuItem
+                android:id="@+id/item_change_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:sideMenuTopDivider="false"
+                android:layout_marginTop="@dimen/margin_9"
+                app:layout_constraintTop_toBottomOf="@id/second_divider"
+                app:sideMenuIcon="@drawable/ic_group"
+                app:sideMenuLight="true"
+                app:sideMenuText="@string/change_group" />
+
+            <View
+                android:id="@+id/third_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_9"
+                android:background="@color/gray_divider"
+                app:layout_constraintTop_toBottomOf="@id/item_change_group" />
+
+            <com.tagmarshal.golf.view.SideMenuItem
+                android:id="@+id/item_change_device_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:sideMenuTopDivider="false"
+                android:layout_marginTop="@dimen/margin_9"
+                android:clickable="true"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/third_divider"
+                app:sideMenuIcon="@drawable/ic_device"
+                app:sideMenuLight="true"
+                app:sideMenuText="@string/change_device_number" />
+
+            <View
+                android:id="@+id/fourth_player_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_9"
+                android:background="@color/gray_divider"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/item_change_device_number" />
+
+            <com.tagmarshal.golf.view.SideMenuItem
+                android:id="@+id/item_end_round"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_9"
+                app:sideMenuTopDivider="false"
+                app:layout_constraintTop_toBottomOf="@id/fourth_player_divider"
+                app:sideMenuIcon="@drawable/ic_retry"
+                app:sideMenuLight="true"
+                app:sideMenuText="@string/end_round" />
+
+            <View
+                android:id="@+id/clear_data_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_9"
+                android:background="@color/gray_divider"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/item_end_round" />
+
+            <com.tagmarshal.golf.view.SideMenuItem
+                android:id="@+id/rotate_screen_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_9"
+                app:sideMenuTopDivider="false"
+                app:layout_constraintTop_toBottomOf="@id/clear_data_divider"
+                app:sideMenuIcon="@drawable/ic_screen_rotation_black_24dp"
+                app:sideMenuLight="true"
+                app:sideMenuText="@string/rotate_screen" />
+
+            <View
+                android:id="@+id/rotate_screen_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_9"
+                android:background="@color/gray_divider"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/item_end_round" />
+
+            <com.tagmarshal.golf.view.SideMenuItem
+                android:id="@+id/item_clear_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:sideMenuTopDivider="false"
+                android:layout_marginTop="@dimen/margin_9"
+                app:layout_constraintTop_toBottomOf="@id/rotate_screen_divider"
+                app:sideMenuIcon="@drawable/ic_clear"
+                app:sideMenuLight="true"
+                app:sideMenuText="@string/clear_data" />
+
+            <View
+                android:id="@+id/set_maintenance_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_9"
+                android:background="@color/gray_divider"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/item_clear_data" />
+
+            <com.tagmarshal.golf.view.SideMenuItem
+                android:id="@+id/item_set_maintenance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:sideMenuTopDivider="false"
+                android:layout_marginTop="@dimen/margin_9"
+                app:sideMenuIcon="@drawable/ic_maintenance"
+                app:sideMenuLight="true"
+                app:sideMenuText="@string/set_maintenance" />
+            <View
+                android:id="@+id/clear_maintenance_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_9"
+                android:background="@color/gray_divider"
+                android:visibility="visible"
+                />
+            <com.tagmarshal.golf.view.SideMenuItem
+                android:id="@+id/item_clear_maintenance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:sideMenuTopDivider="false"
+                android:layout_marginTop="@dimen/margin_9"
+                app:sideMenuIcon="@drawable/ic_clear_maintenance"
+                app:sideMenuLight="true"
+                app:sideMenuText="@string/clear_maintenance" />
+
+            <View
+                android:id="@+id/pair_snaptoplay_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_9"
+                android:background="@color/gray_divider"
+                android:visibility="visible"
+                />
+            <com.tagmarshal.golf.view.SideMenuItem
+                android:id="@+id/item_pair_snaptoplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:sideMenuTopDivider="false"
+                android:layout_marginTop="@dimen/margin_9"
+                app:sideMenuIcon="@drawable/ic_pair_speakers"
+                app:sideMenuLight="true"
+                app:sideMenuText="@string/pair_snaptoplay" />
+
+            <View
+                android:id="@+id/clear_supportlogs_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_9"
+                android:background="@color/gray_divider"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/item_clear_data" />
+
+            <com.tagmarshal.golf.view.SideMenuItem
+                android:id="@+id/item_support_logs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:sideMenuTopDivider="false"
+                android:layout_marginTop="@dimen/margin_9"
+                app:layout_constraintTop_toBottomOf="@id/clear_supportlogs_divider"
+                app:sideMenuIcon="@drawable/ic_send_logs"
+                app:sideMenuLight="true"
+                app:sideMenuText="@string/send_logs_to_support" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/btn_back"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:buttonColor="@color/white"
+        app:buttonText="@string/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

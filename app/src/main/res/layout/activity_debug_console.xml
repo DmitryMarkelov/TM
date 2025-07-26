@@ -1,0 +1,30 @@
+<!-- activity_debug_console.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="16dp">
+
+    <TextView
+        android:id="@+id/log_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#000000"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/close_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Close" />
+
+    <Button
+        android:id="@+id/upgrade_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REQUEST FIRMWARE CHECK (WILL REQUIRE RESTART)" />
+</LinearLayout>

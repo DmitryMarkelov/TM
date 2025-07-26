@@ -1,0 +1,25 @@
+The app will need to push fixes into the server selected.
+A connection can be established and can remain open on port 5000 or opened and closed as required.
+
+Data must be posted in individual JSON format:
+
+Format of data being passed: 
+{"password":"TM@pp","device_id":"234500004891662","tag":"7","latitude":44.09218216,"longitude":-79.11938477,"timestamp":"2018-08-24T14:36:32.23251Z","battery":"battery_percentage"}
+
+Information on data in the string
+password: fixed password for the server to accept the fix, set to TM@pp
+device_id: IMEI number of the device
+tag: Device number as configured in the app
+latitude: latitude
+longitude: longitude
+timestamp: timestamp in UTC
+
+
+New Fix insertion URL structure
+https://+url+/app/insertfix/device/+device_id+/lat/+lat+/lon/+lon+/battery/+battery_percentage+/accuracy/+location_accuracy+/timestamp/+timestamp+/
+device_id: IMEI number of the device
+lat: latitude
+lon: longitude
+battery_percentage: battery percentage
+location_accuracy: accuracy of the GPS fix
+timestamp: timestamp in UTC

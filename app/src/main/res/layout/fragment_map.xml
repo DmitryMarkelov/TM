@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_menu"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_current_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/bottom_bar_height"
+        android:layout_marginEnd="@dimen/margin_5"
+        android:layout_marginRight="@dimen/margin_5"
+        android:clickable="true"
+        android:padding="@dimen/margin_5">
+
+        <ImageView
+            android:id="@+id/location_icon"
+            android:layout_width="@dimen/image_size_4"
+            android:layout_height="@dimen/image_size_4"
+            android:src="@drawable/ic_location"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/location_text"
+            app:layout_constraintRight_toRightOf="@id/location_text"
+            app:tint="@color/white" />
+
+        <com.tagmarshal.golf.view.TMTextView
+            android:id="@+id/location_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_7"
+            android:gravity="center"
+            android:text="@string/current_location"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/location_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="@dimen/bottom_bar_height"
+        android:layout_marginEnd="@dimen/margin_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/score_icon"
+            android:layout_width="@dimen/image_size_0"
+            android:layout_height="@dimen/image_size_0"
+            android:src="@drawable/ic_score"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_gravity="bottom" >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_menu_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_bar_height"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@color/green"
+            tools:ignore="MissingConstraints">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_9"
+                android:background="@color/white"
+                app:layout_constraintTop_toTopOf="@id/bottom_menu_container" />
+
+            <View
+                android:id="@+id/bottom_menu_top_mergin"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <com.tagmarshal.golf.view.TMTextView
+                android:id="@+id/offline_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:paddingTop="@dimen/margin_7"
+                android:textSize="@dimen/text_size_5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bottom_menu_top_mergin"
+                android:visibility="gone"
+                />
+
+            <com.tagmarshal.golf.view.TMTimerView
+                android:id="@+id/left_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/offline_tv" />
+
+            <com.tagmarshal.golf.view.BottomLeftTimeView
+                android:id="@+id/left_time_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/left_timer"
+                app:layout_constraintRight_toLeftOf="@id/right_timer"
+                app:layout_constraintTop_toBottomOf="@id/offline_tv" />
+
+            <com.tagmarshal.golf.view.TMTimerView
+                android:id="@+id/right_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/left_timer"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/left_timer" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/advertisementPager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_bar_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bottom_menu_container"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/warning_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_menu"
+        android:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/top_content_warning"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_alpha"
+            android:clickable="true"
+            android:paddingBottom="@dimen/margin_5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.25">
+
+            <View
+                android:id="@+id/top_margin_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/warning_icon"
+                android:layout_width="@dimen/image_size_1"
+                android:layout_height="@dimen/image_size_1"
+                android:layout_marginTop="@dimen/margin_5"
+                android:src="@drawable/ic_lightning"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top_margin_2"/>
+
+            <com.tagmarshal.golf.view.TMTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:gravity="center"
+                android:text="@string/warning_lightning"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/warning_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/holes_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_menu"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/side_bar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/black_70"
+            app:layout_constraintWidth_percent="0.33"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/range_finding_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:paddingBottom="@dimen/margin_6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <View
+                    android:id="@+id/top_margin3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <LinearLayout
+                    android:id="@+id/activate_range_finding"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:foregroundGravity="top|center"
+                    android:background="@drawable/range_finding_background"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/top_margin3"
+                    app:layout_constraintWidth_percent="0.80">
+                    <ImageButton
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:background="@drawable/baseline_location_on_24"
+                        android:layout_gravity="center"
+                        app:tint="@color/white"
+                        android:clickable="false"
+                        android:layout_marginBottom="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:text="@string/activate"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/range_finding"
+                        android:textColor="@color/green"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/top_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone">
+
+                <View
+                    android:id="@+id/top_margin"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/hole_icon"
+                    android:layout_width="@dimen/image_size_5"
+                    android:layout_height="@dimen/image_size_5"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:src="@drawable/ic_golf_hole"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/hole_text"
+                    app:layout_constraintTop_toBottomOf="@id/top_margin"/>
+
+                <com.tagmarshal.golf.view.TMTextView
+                    android:id="@+id/hole_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:text="@string/hole"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_6"
+                    app:layout_constraintBottom_toBottomOf="@id/hole_icon"
+                    app:layout_constraintLeft_toRightOf="@id/hole_icon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/hole_icon"/>
+
+                <ImageButton
+                    android:id="@+id/btn_prev_hole"
+                    android:layout_width="@dimen/button_size_0"
+                    android:layout_height="@dimen/button_size_0"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:padding="@dimen/margin_8"
+                    android:src="@drawable/ic_hole_left_selector"
+                    app:layout_constraintBottom_toBottomOf="@id/hole_number"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/hole_number"
+                    app:layout_constraintTop_toTopOf="@id/hole_number"/>
+
+                <com.tagmarshal.golf.view.TMTextView
+                    android:id="@+id/hole_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_7"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_0"
+                    app:layout_constraintLeft_toRightOf="@id/btn_prev_hole"
+                    app:layout_constraintRight_toLeftOf="@id/btn_next_hole"
+                    app:layout_constraintTop_toBottomOf="@id/hole_text"/>
+
+                <ImageButton
+                    android:id="@+id/btn_next_hole"
+                    android:layout_width="@dimen/button_size_0"
+                    android:layout_height="@dimen/button_size_0"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:padding="@dimen/margin_8"
+                    android:src="@drawable/ic_hole_right_selector"
+                    app:layout_constraintBottom_toBottomOf="@id/hole_number"
+                    app:layout_constraintLeft_toRightOf="@id/hole_number"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/hole_number"/>
+
+                <com.tagmarshal.golf.view.TMTextView
+                    android:id="@+id/hole_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_9"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_9"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/hole_number"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bottom_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_alpha"
+                android:clickable="true"
+                android:paddingBottom="@dimen/margin_6"
+                android:paddingTop="@dimen/margin_6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top_content"
+                app:layout_constraintWidth_percent="0.75"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/back_icon"
+                    android:layout_width="@dimen/image_size_5"
+                    android:layout_height="@dimen/image_size_5"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/back_text"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <com.tagmarshal.golf.view.TMTextView
+                    android:id="@+id/back_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:text="@string/back"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_6"
+                    app:layout_constraintBottom_toBottomOf="@id/back_icon"
+                    app:layout_constraintLeft_toRightOf="@id/back_icon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/back_icon"/>
+
+                <com.tagmarshal.golf.view.TMTextView
+                    android:id="@+id/back_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_2"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/back_text"/>
+
+                <View
+                    android:id="@+id/first_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/margin_6"
+                    android:layout_marginRight="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toBottomOf="@id/back_distance"/>
+
+                <ImageView
+                    android:id="@+id/center_icon"
+                    android:layout_width="@dimen/image_size_5"
+                    android:layout_height="@dimen/image_size_5"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:src="@drawable/ic_center"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/center_text"
+                    app:layout_constraintTop_toBottomOf="@id/first_divider"/>
+
+                <com.tagmarshal.golf.view.TMTextView
+                    android:id="@+id/center_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:text="@string/center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_6"
+                    app:layout_constraintBottom_toBottomOf="@id/center_icon"
+                    app:layout_constraintLeft_toRightOf="@id/center_icon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/center_icon"/>
+
+                <com.tagmarshal.golf.view.TMTextView
+                    android:id="@+id/center_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_7"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/center_text"/>
+
+                <View
+                    android:id="@+id/second_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/margin_6"
+                    android:layout_marginRight="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toBottomOf="@id/center_distance"/>
+
+                <ImageView
+                    android:id="@+id/front_icon"
+                    android:layout_width="@dimen/image_size_5"
+                    android:layout_height="@dimen/image_size_5"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:src="@drawable/ic_front"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/front_text"
+                    app:layout_constraintTop_toBottomOf="@id/second_divider"/>
+
+                <com.tagmarshal.golf.view.TMTextView
+                    android:id="@+id/front_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:text="@string/front"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_6"
+                    app:layout_constraintBottom_toBottomOf="@id/front_icon"
+                    app:layout_constraintLeft_toRightOf="@id/front_icon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/front_icon"/>
+
+                <com.tagmarshal.golf.view.TMTextView
+                    android:id="@+id/front_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_7"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_2"
+                    app:layout_constraintBottom_toTopOf="@id/third_divider"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/front_text"/>
+
+                <View
+                    android:id="@+id/third_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/margin_6"
+                    android:layout_marginRight="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintTop_toBottomOf="@id/front_distance"/>
+
+                <com.tagmarshal.golf.view.TMTextView
+                    android:id="@+id/measure_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/third_divider"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/geofence_alert"
+        android:layout_width="600dp"
+        android:layout_height="400dp"
+        android:layout_marginBottom="200dp"
+        android:layout_marginLeft="0dp"
+        android:background="@drawable/rounded_border"
+        android:visibility="invisible"
+        android:padding="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/geofence_alert_top"
+            android:layout_width="600dp"
+            android:layout_height="250dp"
+            android:background="@color/red"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/geofence_alert_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_danger"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="30dp"
+                app:tint="@color/white"/>
+
+            <TextView
+                android:id="@+id/geofence_text_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GEOFENCE ALERT"
+                android:fontFamily="@font/osp_din"
+                android:textSize="72sp"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/geofence_alert_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/geofence_alert_bottom"
+            android:layout_width="600dp"
+            android:layout_height="140dp"
+            android:background="@android:color/white"
+            android:padding="30dp"
+            app:layout_constraintTop_toBottomOf="@id/geofence_alert_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/geofence_alert_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/osp_din"
+                android:text="Your Message Here"
+                android:textSize="32sp"
+                android:textColor="@color/red"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/teams_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_menu">
+
+        <com.tagmarshal.golf.view.TMTextView
+            android:id="@+id/tag"
+            android:layout_width="@dimen/image_size_0"
+            android:layout_height="@dimen/image_size_0"
+            android:background="@drawable/circle_shape"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_1"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.tagmarshal.golf.view.TMTextView
+            android:id="@+id/right_team_tv"
+            android:layout_width="@dimen/header_icon_size"
+            android:layout_height="@dimen/header_icon_size"
+            android:background="@drawable/circle_shape"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_2"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tag"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.tagmarshal.golf.view.TMTextView
+            android:id="@+id/left_team_tv"
+            android:layout_width="@dimen/text_size_2"
+            android:layout_height="@dimen/text_size_2"
+            android:background="@drawable/circle_shape"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_2"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tag"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_snaptoplay_dialogs"
+            android:clickable="true"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_margin="0dp"
+            android:padding="30dp"
+            android:background="@color/black_70">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bottom_snaptoplay_bluetooth_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent">
+
+                <View
+                    android:id="@+id/bottom_snap_dialog_bluetooth_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="680dp"
+                    app:layout_constraintBottom_toBottomOf="@id/bottom_snaptoplay_bluetooth_dialog"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/rounded_dialog_dark_background"/>
+
+                <Button
+                    android:id="@+id/btn_close_snaptoplay_bluetooth"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="24dp"
+                    android:clickable="true"
+                    android:background="@drawable/ic_x"
+                    app:layout_constraintEnd_toEndOf="@id/bottom_snap_dialog_bluetooth_view"
+                    app:layout_constraintTop_toTopOf="@id/bottom_snap_dialog_bluetooth_view"
+                />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="84dp"
+                    android:background="@drawable/img_bluetooth"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/bottom_snap_dialog_bluetooth_view"
+                />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="256dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    app:layout_constraintEnd_toEndOf="@id/bottom_snap_dialog_bluetooth_view"
+                    app:layout_constraintTop_toTopOf="@id/bottom_snap_dialog_bluetooth_view"
+                    android:fontFamily="@font/barlowcondensed_medium"
+                    android:textSize="28pt"
+                    android:textColor="@color/white"
+                    android:text="To play music open the bluetooth settings on your phone and connect to the speakers:"
+                />
+
+                <TextView
+                    android:id="@+id/bluetooth_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="192dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@id/bottom_snap_dialog_bluetooth_view"
+                    android:fontFamily="@font/barlowcondensed_bold"
+                    android:textSize="48pt"
+                    android:textColor="@color/green"
+                    android:text="tagmarshal_9999"
+                />
+
+                <Button
+                    android:id="@+id/btn_snaptoplpay_bluetooth_continue"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_margin="30dp"
+                    android:text="CONTINUE"
+                    android:fontFamily="@font/barlowcondensed_medium"
+                    android:textSize="36pt"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rectangle_shape_button"
+                    app:layout_constraintBottom_toBottomOf="@id/bottom_snap_dialog_bluetooth_view"
+                />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    
+
+    <FrameLayout
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/image"
+        android:visibility="gone"
+        android:layout_width="@dimen/image_size_5"
+        android:layout_height="@dimen/image_size_5"
+        tools:ignore="MissingConstraints" />
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+   

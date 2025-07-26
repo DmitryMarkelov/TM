@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "360410650003",
+    "firebase_url": "https://tagmarshal-224108.firebaseio.com",
+    "project_id": "tagmarshal-224108",
+    "storage_bucket": "tagmarshal-224108.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360410650003:android:ee6d5402caccb814",
+        "android_client_info": {
+          "package_name": "com.tagmarshal.golf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360410650003-7k839iejoa41h2hf7s1b929gcjdphkor.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK4gNXdSfAKpMkJnUY7u9rA8QgjXD3QTA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

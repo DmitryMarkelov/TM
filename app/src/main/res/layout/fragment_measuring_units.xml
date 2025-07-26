@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:paddingBottom="@dimen/margin_3"
+    android:paddingLeft="@dimen/margin_3"
+    android:paddingRight="@dimen/margin_3"
+    android:paddingTop="@dimen/margin_3">
+
+    <View
+        android:id="@+id/top_margin"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ruler_icon"
+        android:layout_width="@dimen/header_icon_size"
+        android:layout_height="@dimen/header_icon_size"
+        android:src="@drawable/ic_ruler"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/measuring_text"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/measuring_text"
+        app:layout_constraintTop_toTopOf="@id/measuring_text" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/measuring_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_2"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:text="@string/measuring_units"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_0"
+        app:layout_constraintLeft_toRightOf="@id/ruler_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_margin"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_2"
+        android:background="@color/gray_divider"
+        app:layout_constraintTop_toBottomOf="@id/ruler_icon" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_2"
+        android:text="@string/unit_for_measuring_distance"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_4"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    <com.tagmarshal.golf.view.GolfSwitchView
+        android:id="@+id/metric_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5"
+        app:golfSwitch1Text="@string/yards"
+        app:golfSwitch2Text="@string/meters"
+        app:layout_constraintTop_toBottomOf="@id/text_1" />
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/confirm"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_size_0"
+        app:TMButtonSize="normal"
+        app:buttonColor="@color/green"
+        app:buttonText="@string/confirm"
+        app:buttonTextSize="large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".activity.main.MainActivity">
+
+    <com.tagmarshal.golf.view.CustomDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawer_menu"
+            android:layout_width="@dimen/side_menu_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:clickable="false"
+            android:fitsSystemWindows="true">
+
+            <include
+                layout="@layout/side_menu_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></include>
+        </com.google.android.material.navigation.NavigationView>
+    </com.tagmarshal.golf.view.CustomDrawerLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/appbar_header" />
+
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_three_lines"
+            android:tint="#fff"
+            android:paddingBottom="@dimen/margin_5"
+            android:paddingStart="@dimen/margin_4"
+            android:paddingEnd="@dimen/margin_4"
+            android:paddingTop="@dimen/margin_5"
+            app:layout_constraintRight_toRightOf="@id/appbar"
+            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintBottom_toBottomOf="@id/title" />
+
+        <View
+            android:id="@+id/top"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintLeft_toLeftOf="@id/back"
+            app:layout_constraintRight_toRightOf="@id/back"
+            app:layout_constraintTop_toTopOf="@id/back" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/image_size_4"
+            android:layout_height="@dimen/image_size_4"
+            android:layout_marginRight="@dimen/margin_7"
+            android:layout_marginTop="@dimen/margin_5"
+            android:src="@drawable/logo_1"
+            app:layout_constraintBottom_toBottomOf="@id/top"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="@id/top"
+            app:layout_constraintRight_toLeftOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/top" />
+
+        <View
+            android:id="@+id/left_place"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/back"
+            app:layout_constraintLeft_toLeftOf="@id/back"
+            app:layout_constraintTop_toTopOf="@id/back"
+            app:layout_constraintWidth_percent="0.035" />
+
+        <ImageView
+            android:id="@+id/logo_place"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo_place_header"
+            android:visibility="invisible"
+            app:layout_constraintHeight_percent="0.98"
+            app:layout_constraintLeft_toRightOf="@id/left_place"
+            app:layout_constraintTop_toTopOf="@id/back"
+            app:layout_constraintWidth_percent="0.2" />
+
+        <ImageView
+            android:id="@+id/club_logo_iv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin_6"
+            android:layout_marginLeft="@dimen/margin_6"
+            android:layout_marginRight="@dimen/margin_6"
+            android:layout_marginTop="@dimen/margin_7"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@id/logo_place"
+            app:layout_constraintLeft_toLeftOf="@id/logo_place"
+            app:layout_constraintRight_toRightOf="@id/logo_place"
+            app:layout_constraintTop_toTopOf="@id/logo_place" />
+
+        <com.tagmarshal.golf.view.TMTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:text="@string/tagmarshal"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_5"
+            app:layout_constraintBottom_toBottomOf="@id/top"
+            app:layout_constraintLeft_toRightOf="@id/logo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/top"
+            app:textAllCaps="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/inactivity_frame"></FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

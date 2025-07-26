@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/alert_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange"
+    android:paddingLeft="@dimen/margin_3"
+    android:paddingTop="@dimen/margin_3"
+    android:paddingRight="@dimen/margin_3"
+    android:paddingBottom="@dimen/margin_3">
+
+    <View
+        android:id="@+id/top_margin"
+        android:layout_width="0dp"
+        android:layout_height="1dp" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_5"
+        android:text="Excuse our divot!"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_margin" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/margin_6"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_divot_repair_icon"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/margin_5"
+        android:text="This Tagmarshal screen is in
+Tournament Mode
+or
+undergoing routine
+maintenance.
+It will be up again soon,
+hang tight!"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

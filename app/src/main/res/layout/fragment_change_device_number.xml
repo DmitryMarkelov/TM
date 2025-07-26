@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:paddingBottom="@dimen/margin_3"
+    android:paddingLeft="@dimen/margin_3"
+    android:paddingRight="@dimen/margin_3">
+
+    <View
+        android:id="@+id/top_margin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/device_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/device"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_0"
+        app:layout_constraintBottom_toBottomOf="@id/device_number"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/device_number"
+        app:layout_constraintTop_toTopOf="@id/device_number" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/device_number"
+        android:layout_width="@dimen/image_size_1"
+        android:layout_height="@dimen/image_size_1"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:layout_marginTop="@dimen/margin_4"
+        android:background="@drawable/circle_shape"
+        android:gravity="center"
+        android:text="7"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_1"
+        app:layout_constraintLeft_toRightOf="@id/device_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_margin" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/new_device_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5"
+        android:gravity="center"
+        android:text="@string/new_device_number"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_3"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/device_number" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/margin_5"
+        android:layout_marginTop="@dimen/margin_7"
+        android:background="@drawable/alert_dialog_background"
+        app:layout_constraintBottom_toTopOf="@id/info_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/new_device_tv" />
+
+    <com.tagmarshal.golf.view.TMTextView
+        android:id="@+id/info_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_0"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_4"
+        app:fontFam="regular_gothic_regular"
+        app:layout_constraintBottom_toTopOf="@id/btn_assign_number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/btn_assign_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_6"
+        app:buttonColor="@color/green"
+        app:buttonText="@string/assign_number"
+        app:layout_constraintBottom_toTopOf="@id/btn_cancel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.tagmarshal.golf.view.TMButton
+        android:id="@+id/btn_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:buttonColor="@color/white"
+        app:buttonText="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
