@@ -36,4 +36,25 @@ public class MostMediaHelper {
     public static String getCurrentAdServer() {
         return MostMediaConfig.isEnabled() ? MostMediaConfig.getAdServerUrl() : null;
     }
+    
+    /**
+     * Create enhanced banner adapter for proper banner rotation
+     * @param context Android context
+     * @param advertisements List of advertisements
+     * @return EnhancedBannerAdapter instance
+     */
+    public static com.tagmarshal.golf.mostmediasdk.EnhancedBannerAdapter createEnhancedBannerAdapter(
+            android.content.Context context, 
+            java.util.List<com.tagmarshal.golf.rest.model.AdvertisementModel> advertisements) {
+        return new com.tagmarshal.golf.mostmediasdk.EnhancedBannerAdapter(context, advertisements);
+    }
+    
+    /**
+     * Check if enhanced banner rotation should be used
+     * @param advertisements List of advertisements
+     * @return true if enhanced rotation is beneficial (multiple banners available)
+     */
+    public static boolean shouldUseEnhancedRotation(java.util.List<com.tagmarshal.golf.rest.model.AdvertisementModel> advertisements) {
+        return MostMediaSDK.EnhancedRotationHelper.hasMultipleBanners(advertisements);
+    }
 } 

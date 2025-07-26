@@ -609,8 +609,11 @@ public class FragmentMap extends BaseFragment implements OnMapReadyCallback, Fra
                         advertisementBannerAdapter.notifyDataSetChanged();
                     }
                     if (bannersViewPager.getVisibility() != View.VISIBLE) {
+                        Log.d("FragmentMap", "🎯 ViewPager not visible, starting auto-slide and making visible");
                         startAutoSlide(bannersAdverts);
                         bannersViewPager.setVisibility(View.VISIBLE);
+                    } else {
+                        Log.d("FragmentMap", "⚠️ ViewPager already visible, NOT starting auto-slide");
                     }
                 } else {
                     bannersViewPager.setVisibility(View.GONE);
@@ -623,18 +626,27 @@ public class FragmentMap extends BaseFragment implements OnMapReadyCallback, Fra
 
     // Timer for auto switching banners
     private void startAutoSlide(List<AdvertisementModel> bannersAdverts) {
+        Log.d("FragmentMap", "🎬 startAutoSlide called - Total images: " + bannersAdverts.get(0).getDownloadsUrls().size() + 
+              ", DisplayTime: " + bannersAdverts.get(0).getDisplayTime() + "ms");
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                Log.d("FragmentMap", "🔄 Banner timer triggered - Current index: " + currentBannerIndex + 
+                      ", Total images: " + bannersAdverts.get(0).getDownloadsUrls().size());
                 if (currentBannerIndex < bannersAdverts.get(0).getDownloadsUrls().size() - 1) {
                     currentBannerIndex++;
+                    Log.d("FragmentMap", "➡️ Moving to next banner: " + currentBannerIndex);
                 } else {
                     currentBannerIndex = 0;
+                    Log.d("FragmentMap", "🔁 Cycling back to first banner: " + currentBannerIndex);
                 }
                 bannersViewPager.setCurrentItem(currentBannerIndex, true);
+                Log.d("FragmentMap", "✅ ViewPager updated to index: " + currentBannerIndex);
 
                 // Schedule the next slide after the current display time
-                handler.postDelayed(this, bannersAdverts.get(0).getDisplayTime() * 1000L);
+                long delayMs = bannersAdverts.get(0).getDisplayTime() * 1000L;
+                Log.d("FragmentMap", "⏰ Scheduling next banner change in " + delayMs + "ms");
+                handler.postDelayed(this, delayMs);
             }
         }, bannersAdverts.get(0).getDisplayTime() * 1000L);
     }
@@ -1916,19 +1928,33 @@ public class FragmentMap extends BaseFragment implements OnMapReadyCallback, Fra
 
     private AdvertisementModel checkIsInAdvertisementSection
             (List<AdvertisementModel> advertisementList, LatLng location) {
+        Log.d("FragmentMap", "🏁 checkIsInAdvertisementSection called with location: " + location);
+        Log.d("FragmentMap", "📊 Checking " + advertisementList.size() + " advertisements for location match");
+        
         for (AdvertisementModel advert : advertisementList) {
+            Log.d("FragmentMap", "🔍 Checking ad ID: " + advert.getId() + ", Type: " + advert.getType() + 
+                  ", Enabled: " + advert.isEnabled() + ", Downloaded: " + advert.isDownloaded());
+                  
             for (AdvertisementModel.Geometry advertSection : advert.getSections()) {
-                if (PolyUtil.containsLocation(location.latitude, location.longitude, advertSection.getPolygons().getPoints(), false)) {
+                boolean inZone = PolyUtil.containsLocation(location.latitude, location.longitude, 
+                                advertSection.getPolygons().getPoints(), false);
+                Log.d("FragmentMap", "🌐 Location check for ad " + advert.getId() + ": " + 
+                      (inZone ? "IN ZONE ✅" : "not in zone ❌"));
+                      
+                if (inZone) {
                     if (!advertiseId.equals(advert.getId())) {
                         advertiseId = advert.getId();
+                        Log.d("FragmentMap", "✅ NEW AD ZONE ENTERED: " + advert.getId());
                         return advert;
                     } else if (advertiseId.equals(advert.getId())) {
+                        Log.d("FragmentMap", "⏭️ Already in this ad zone: " + advert.getId());
                         return null;
                     }
                 }
             }
         }
         advertiseId = "";
+        Log.d("FragmentMap", "❌ Not in any ad zone");
         return null;
     }
 

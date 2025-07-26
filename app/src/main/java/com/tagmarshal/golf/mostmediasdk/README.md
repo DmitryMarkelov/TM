@@ -70,16 +70,51 @@ The integration required minimal changes to only 2 existing files:
 
 **No configuration needed in app code** - everything is configured inside the SDK.
 
+## Enhanced Banner Rotation
+
+The SDK now includes enhanced banner rotation capabilities to fix issues where banners from different advertisements don't rotate properly.
+
+### Problem Solved
+
+- **Original Issue**: Banners were cycling through images of a single advertisement instead of different advertisements
+- **Solution**: SDK provides utilities to properly handle rotation across multiple advertisements and their images
+
+### Usage for Enhanced Banner Rotation
+
+```java
+// Check if enhanced rotation should be used
+if (MostMediaHelper.shouldUseEnhancedRotation(bannersAdverts)) {
+    // Create enhanced adapter
+    EnhancedBannerAdapter enhancedAdapter = MostMediaHelper.createEnhancedBannerAdapter(context, bannersAdverts);
+    bannersViewPager.setAdapter(enhancedAdapter);
+    
+    // Use enhanced rotation helper for timing
+    int totalBanners = MostMediaSDK.getTotalBannerCount(bannersAdverts);
+    long displayTime = MostMediaSDK.EnhancedRotationHelper.getDisplayTimeMs(bannersAdverts, currentIndex);
+    int nextIndex = MostMediaSDK.EnhancedRotationHelper.getNextBannerIndex(currentIndex, totalBanners);
+}
+```
+
+### Enhanced Rotation Features
+
+- **Multiple Advertisement Support**: Properly rotates through banners from different advertisements
+- **Individual Display Times**: Each banner can have its own display time
+- **Smart Indexing**: Global banner indexing across all advertisements
+- **Seamless Integration**: Drop-in replacement for existing banner adapters
+
 ## SDK Components
 
-- `MostMediaSDK.java` - Main SDK interface
+- `MostMediaSDK.java` - Main SDK interface with enhanced rotation utilities
 - `MostMediaConfig.java` - Configuration management
 - `MostMediaService.java` - Retrofit service interface
-- `MostMediaHelper.java` - Simple configuration helper
+- `MostMediaHelper.java` - Simple configuration helper with enhanced methods
+- `EnhancedBannerAdapter.java` - Advanced banner adapter for proper rotation
 
 ## Benefits
 
 - **Minimal Code Changes**: Only 3 lines of actual changes to existing code
 - **No Functionality Loss**: All existing ad features work exactly the same
 - **Easy Testing**: Can be enabled/disabled at runtime
-- **Clean Architecture**: SDK is self-contained and doesn't interfere with other features 
+- **Clean Architecture**: SDK is self-contained and doesn't interfere with other features
+- **Enhanced Banner Rotation**: Fixes banner rotation issues across multiple advertisements
+- **Individual Banner Timing**: Each banner respects its own displayTime setting 

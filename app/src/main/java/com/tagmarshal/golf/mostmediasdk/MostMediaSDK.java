@@ -2,137 +2,234 @@ package com.tagmarshal.golf.mostmediasdk;
 
 import android.util.Log;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.tagmarshal.golf.rest.model.AdvertisementModel;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * MostMedia SDK - Main interface for ad requests
- * Redirects advertisement requests to a new server while maintaining compatibility
+ * Main MostMedia SDK class for handling advertisement management
+ * Handles proper banner rotation by organizing advertisement data
  */
 public class MostMediaSDK {
     private static final String TAG = "MostMediaSDK";
-    private static MostMediaService service;
+    private static boolean isConfigured = false;
     private static Retrofit retrofit;
-    
-    // Initialize SDK automatically when class is loaded
-    static {
-        Log.d(TAG, "🔄 MostMedia SDK static initializer called");
-        initialize();
-    }
+    private static MostMediaService service;
     
     /**
-     * Initialize the SDK with the configured ad server URL
-     */
-    public static void initialize() {
-        Log.d(TAG, "🚀 MostMedia SDK initialize() called");
-        Log.d(TAG, "📊 SDK Enabled: " + MostMediaConfig.isEnabled());
-        Log.d(TAG, "🌐 Server URL: " + MostMediaConfig.getAdServerUrl());
-        
-        if (MostMediaConfig.isEnabled()) {
-            Log.d(TAG, "✅ SDK is enabled, setting up Retrofit");
-            setupRetrofit();
-        } else {
-            Log.w(TAG, "❌ SDK is disabled, skipping initialization");
-        }
-    }
-    
-    /**
-     * Initialize the SDK with a custom ad server URL (for runtime configuration)
-     * @param serverUrl Base URL of the new ad server (e.g., "https://your-server.com/")
+     * Initialize the SDK with the new server URL
+     * @param serverUrl Base URL of the new ad server
      */
     public static void initialize(String serverUrl) {
-        Log.d(TAG, "🚀 MostMedia SDK initialize(String) called with URL: " + serverUrl);
+        Log.d(TAG, "🚀 Initializing MostMediaSDK with server: " + serverUrl);
         MostMediaConfig.configure(serverUrl);
-        setupRetrofit();
+        initializeRetrofit(serverUrl);
+        isConfigured = true;
+        Log.d(TAG, "✅ MostMediaSDK initialized successfully");
     }
     
     /**
-     * Get advertisements from the configured server
-     * @return Observable list of advertisements in the same format as original API
+     * Initialize Retrofit instance for the new ad server
+     * @param serverUrl Base URL of the new ad server
      */
-    public static Observable<List<AdvertisementModel>> getAdvertisements() {
-        Log.d(TAG, "📡 MostMedia SDK getAdvertisements() called");
-        Log.d(TAG, "📊 SDK Enabled: " + MostMediaConfig.isEnabled());
-        Log.d(TAG, "🌐 Server URL: " + MostMediaConfig.getAdServerUrl());
-        Log.d(TAG, "🔧 Service null: " + (service == null));
+    private static void initializeRetrofit(String serverUrl) {
+        Log.d(TAG, "🔧 Initializing Retrofit for URL: " + serverUrl);
         
-        if (!MostMediaConfig.isEnabled()) {
-            Log.e(TAG, "❌ SDK not enabled, returning error");
-            return Observable.error(new IllegalStateException("MostMedia SDK not initialized. Call initialize() first."));
-        }
-        
-        if (service == null) {
-            Log.w(TAG, "⚠️ Service is null, setting up Retrofit");
-            setupRetrofit();
-        }
-        
-        Log.d(TAG, "✅ Making request to server: " + MostMediaConfig.getAdServerUrl() + "ads");
-        return service.getAdvertisements()
-                .doOnNext(ads -> {
-                    Log.d(TAG, "✅ Received " + ads.size() + " advertisements from server");
-                    for (int i = 0; i < ads.size(); i++) {
-                        AdvertisementModel ad = ads.get(i);
-                        Log.d(TAG, "📋 Ad " + (i+1) + ": ID=" + ad.getId() + ", Type=" + ad.getType() + 
-                              ", DisplayTime=" + ad.getDisplayTime() + ", BannerInterval=" + ad.getBannerInterval());
-                        if (ad.getMediaNames() != null && !ad.getMediaNames().isEmpty()) {
-                            Log.d(TAG, "🖼️ Ad " + (i+1) + " Media URL: " + ad.getMediaNames().get(0).getUrl());
-                        }
-                    }
-                })
-                .doOnError(error -> {
-                    Log.e(TAG, "❌ Error getting advertisements: " + error.getMessage(), error);
-                });
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(logging);
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(serverUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(httpClient.build())
+                .build();
+
+        service = retrofit.create(MostMediaService.class);
+        Log.d(TAG, "✅ Retrofit initialized successfully");
     }
     
     /**
-     * Check if SDK is properly configured
-     * @return true if SDK is ready to use
+     * Check if SDK is configured
+     * @return true if SDK is configured
      */
     public static boolean isConfigured() {
-        boolean configured = MostMediaConfig.isEnabled() && service != null;
-        Log.d(TAG, "🔍 SDK Configuration Check - Enabled: " + MostMediaConfig.isEnabled() + 
-              ", Service: " + (service != null) + ", Configured: " + configured);
+        boolean configured = isConfigured && MostMediaConfig.isEnabled();
+        Log.d(TAG, "🔍 SDK Configuration Check - isConfigured: " + isConfigured + 
+              ", MostMediaConfig.isEnabled(): " + MostMediaConfig.isEnabled() + 
+              ", Result: " + configured);
         return configured;
     }
     
     /**
-     * Setup Retrofit client for the new ad server
+     * Get the total number of banners for rotation
+     * This includes all individual banner images from all advertisements
+     * 
+     * @param advertisements List of advertisements
+     * @return Total number of individual banners available for rotation
      */
-    private static void setupRetrofit() {
-        Log.d(TAG, "🔧 Setting up Retrofit client");
-        
-        if (!MostMediaConfig.isEnabled()) {
-            Log.w(TAG, "❌ SDK not enabled, skipping Retrofit setup");
-            return;
+    public static int getTotalBannerCount(List<AdvertisementModel> advertisements) {
+        if (advertisements == null || advertisements.isEmpty()) {
+            Log.d(TAG, "⚠️ No advertisements to count");
+            return 0;
         }
         
-        String baseUrl = MostMediaConfig.getAdServerUrl();
-        Log.d(TAG, "🌐 Base URL: " + baseUrl);
+        int totalBanners = 0;
+        for (AdvertisementModel ad : advertisements) {
+            if (ad.getType().equalsIgnoreCase("banner") && ad.isEnabled() && ad.isDownloaded()) {
+                List<String> downloadUrls = ad.getDownloadsUrls();
+                if (downloadUrls != null) {
+                    totalBanners += downloadUrls.size();
+                }
+            }
+        }
         
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .build();
+        Log.d(TAG, "🎯 Total banner count: " + totalBanners);
+        return totalBanners;
+    }
+    
+    /**
+     * Get specific banner information by global index
+     * This maps a global banner index to the specific advertisement and image URL
+     * 
+     * @param advertisements List of advertisements
+     * @param globalIndex Global banner index (0 to totalBannerCount-1)
+     * @return BannerInfo containing the advertisement and image URL, or null if invalid index
+     */
+    public static BannerInfo getBannerByGlobalIndex(List<AdvertisementModel> advertisements, int globalIndex) {
+        if (advertisements == null || advertisements.isEmpty()) {
+            Log.d(TAG, "⚠️ No advertisements available");
+            return null;
+        }
         
-        Log.d(TAG, "🔧 Creating Retrofit instance");
-        retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
+        int currentIndex = 0;
+        for (AdvertisementModel ad : advertisements) {
+            if (ad.getType().equalsIgnoreCase("banner") && ad.isEnabled() && ad.isDownloaded()) {
+                List<String> downloadUrls = ad.getDownloadsUrls();
+                if (downloadUrls != null) {
+                    for (String imageUrl : downloadUrls) {
+                        if (currentIndex == globalIndex) {
+                            Log.d(TAG, "🎯 Found banner at global index " + globalIndex + ": " + imageUrl);
+                            return new BannerInfo(ad, imageUrl, currentIndex);
+                        }
+                        currentIndex++;
+                    }
+                }
+            }
+        }
         
-        Log.d(TAG, "🔧 Creating service interface");
-        service = retrofit.create(MostMediaService.class);
-        Log.d(TAG, "✅ Retrofit setup complete");
+        Log.w(TAG, "⚠️ Global index " + globalIndex + " not found, total banners: " + currentIndex);
+        return null;
+    }
+    
+    /**
+     * Get display time for a specific banner by global index
+     * @param advertisements List of advertisements
+     * @param globalIndex Global banner index
+     * @return Display time in seconds, or default 5 seconds if not found
+     */
+    public static int getDisplayTimeForBanner(List<AdvertisementModel> advertisements, int globalIndex) {
+        BannerInfo bannerInfo = getBannerByGlobalIndex(advertisements, globalIndex);
+        if (bannerInfo != null && bannerInfo.advertisement != null) {
+            int displayTime = bannerInfo.advertisement.getDisplayTime();
+            Log.d(TAG, "⏰ Display time for banner " + globalIndex + ": " + displayTime + " seconds");
+            return displayTime > 0 ? displayTime : 5; // Default to 5 seconds if 0 or negative
+        }
+                 Log.w(TAG, "⚠️ Could not get display time for banner " + globalIndex + ", using default 5 seconds");
+         return 5; // Default fallback
+     }
+     
+     /**
+      * Get advertisements from the new server
+      * This is the main method called by FragmentMapModel and FirebaseModel
+      * @return Observable list of advertisements from the new server
+      */
+     public static Observable<List<AdvertisementModel>> getAdvertisements() {
+         Log.d(TAG, "🌐 Getting advertisements from new server");
+         
+         if (service == null) {
+             Log.e(TAG, "❌ Service not initialized, reinitializing...");
+             initializeRetrofit(MostMediaConfig.getAdServerUrl());
+         }
+         
+         return service.getAdvertisements()
+                 .doOnNext(ads -> Log.d(TAG, "✅ Received " + ads.size() + " advertisements from new server"))
+                 .doOnError(error -> Log.e(TAG, "❌ Error getting advertisements: " + error.getMessage()));
+     }
+    
+    /**
+     * Enhanced rotation helper for ViewPager
+     * This provides the logic for proper banner rotation with individual display times
+     */
+    public static class EnhancedRotationHelper {
+        private static final String TAG = "EnhancedRotationHelper";
+        
+        /**
+         * Calculate the next banner index in rotation
+         * @param currentIndex Current banner index
+         * @param totalBanners Total number of banners
+         * @return Next banner index (wraps around to 0 after the last banner)
+         */
+        public static int getNextBannerIndex(int currentIndex, int totalBanners) {
+            if (totalBanners <= 0) {
+                Log.w(TAG, "⚠️ Invalid total banners: " + totalBanners);
+                return 0;
+            }
+            
+            int nextIndex = (currentIndex + 1) % totalBanners;
+            Log.d(TAG, "🔄 Next banner index: " + currentIndex + " -> " + nextIndex + " (total: " + totalBanners + ")");
+            return nextIndex;
+        }
+        
+        /**
+         * Get display time for current banner index
+         * @param advertisements List of advertisements
+         * @param currentIndex Current banner index
+         * @return Display time in milliseconds
+         */
+        public static long getDisplayTimeMs(List<AdvertisementModel> advertisements, int currentIndex) {
+            int displayTimeSeconds = getDisplayTimeForBanner(advertisements, currentIndex);
+            long displayTimeMs = displayTimeSeconds * 1000L;
+            Log.d(TAG, "⏰ Display time for banner " + currentIndex + ": " + displayTimeMs + "ms");
+            return displayTimeMs;
+        }
+        
+        /**
+         * Check if there are multiple banners to rotate
+         * @param advertisements List of advertisements
+         * @return true if there are multiple banners
+         */
+        public static boolean hasMultipleBanners(List<AdvertisementModel> advertisements) {
+            int totalBanners = getTotalBannerCount(advertisements);
+            boolean hasMultiple = totalBanners > 1;
+            Log.d(TAG, "🔍 Has multiple banners: " + hasMultiple + " (total: " + totalBanners + ")");
+            return hasMultiple;
+        }
+    }
+    
+    /**
+     * Banner information container
+     */
+    public static class BannerInfo {
+        public final AdvertisementModel advertisement;
+        public final String imageUrl;
+        public final int globalIndex;
+        
+        public BannerInfo(AdvertisementModel advertisement, String imageUrl, int globalIndex) {
+            this.advertisement = advertisement;
+            this.imageUrl = imageUrl;
+            this.globalIndex = globalIndex;
+        }
     }
 } 
