@@ -16,6 +16,7 @@ import com.tagmarshal.golf.rest.model.RestGeoFenceModel;
 import com.tagmarshal.golf.rest.model.RestHoleModel;
 import com.tagmarshal.golf.rest.model.SupportLogModel;
 import com.tagmarshal.golf.util.TMUtil;
+import com.tagmarshal.golf.mostmediasdk.MostMediaSDK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +101,12 @@ public class FirebaseModel implements FirebaseContract.Model {
 
     @Override
     public Observable<List<AdvertisementModel>> getAdvertisements() {
-        return GolfAPI.getGolfCourseApi().getAdvertisements();
+        // Use MostMedia SDK if configured, otherwise use original API
+        if (MostMediaSDK.isConfigured()) {
+            return MostMediaSDK.getAdvertisements();
+        } else {
+            return GolfAPI.getGolfCourseApi().getAdvertisements();
+        }
     }
 
     @Override

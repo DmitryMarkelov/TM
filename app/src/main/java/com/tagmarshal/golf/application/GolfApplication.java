@@ -9,6 +9,7 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.tagmarshal.golf.BuildConfig;
 import com.tagmarshal.golf.constants.FirebaseConstants;
 import com.tagmarshal.golf.manager.PreferenceManager;
+
 import com.tagmarshal.golf.rest.GolfAPI;
 import com.tagmarshal.golf.test.TestCourseHoles;
 

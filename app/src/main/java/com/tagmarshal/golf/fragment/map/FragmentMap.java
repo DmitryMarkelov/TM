@@ -441,6 +441,7 @@ public class FragmentMap extends BaseFragment implements OnMapReadyCallback, Fra
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Log.d("FragmentMap", "🔄 FragmentMap.onViewCreated() called");
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 
@@ -457,6 +458,7 @@ public class FragmentMap extends BaseFragment implements OnMapReadyCallback, Fra
         getBaseActivity().setSpeakersEnabled(true);
         getBaseActivity().getApplicationContext().getSystemService(Context.POWER_SERVICE);
 
+        Log.d("FragmentMap", "🔄 About to call presenter.getAdvertisements() from onViewCreated");
         setLastAdvertisementFetch();
         presenter.getAdvertisements(getContext());
         startTimer();
@@ -577,17 +579,29 @@ public class FragmentMap extends BaseFragment implements OnMapReadyCallback, Fra
     }
 
     public void showAdvertisementBanners() {
+        Log.d("FragmentMap", "🎯 showAdvertisementBanners() called");
         List<AdvertisementModel> localAdvertisements = getLocalAdvertisements();
+        Log.d("FragmentMap", "📊 Local advertisements count: " + (localAdvertisements != null ? localAdvertisements.size() : 0));
         List<AdvertisementModel> bannersAdverts = new ArrayList<>();
         if (localAdvertisements != null) {
             for (AdvertisementModel advert : localAdvertisements) {
+                Log.d("FragmentMap", "🔍 Checking ad: ID=" + advert.getId() + 
+                      ", Type=" + advert.getType() + 
+                      ", Enabled=" + advert.isEnabled() + 
+                      ", Downloaded=" + advert.isDownloaded());
                 if (advert.isEnabled() && advert.getType().equalsIgnoreCase("banner") && advert.isDownloaded()) {
+                    Log.d("FragmentMap", "✅ Ad qualifies for banner display: " + advert.getId());
                     bannersAdverts.add(advert);
+                } else {
+                    Log.d("FragmentMap", "❌ Ad does not qualify for banner display: " + advert.getId());
                 }
             }
+            Log.d("FragmentMap", "📊 Qualifying banners count: " + bannersAdverts.size());
             if (bannersAdverts.isEmpty()) {
+                Log.d("FragmentMap", "❌ No qualifying banners, hiding ViewPager");
                 bannersViewPager.setVisibility(View.GONE);
             } else {
+                Log.d("FragmentMap", "✅ Showing banners, count: " + bannersAdverts.size());
                 // Check if the banner isEnabled
                 if (bannersAdverts.get(0).isEnabled()) {
                     if (!new HashSet<>(bannersAdverts).equals(new HashSet<>(advertisementBannerAdapter.getAdvertisementList()))) {
